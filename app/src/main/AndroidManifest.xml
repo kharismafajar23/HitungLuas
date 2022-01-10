@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.responsi.matematika">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.HitungLuas">
+        <activity android:name=".LihatMateri"></activity>
+        <activity android:name=".AdminDashboard" />
+        <activity android:name=".UserSignup" />
+        <activity android:name=".UserLogin" />
+        <activity android:name=".AdminLogin" />
+        <activity android:name=".MainActivity" />
+        <activity android:name=".JariJari" />
+        <activity android:name=".Tabung" />
+        <activity android:name=".JajarGenjang" />
+        <activity android:name=".Trapesium" />
+        <activity android:name=".LayangLayang" />
+        <activity android:name=".BelahKetupat" />
+        <activity android:name=".Lingkaran" />
+        <activity android:name=".PersegiPanjang" />
+        <activity android:name=".Persegi" />
+        <activity android:name=".LuasSegitigaActivity" />
+        <activity android:name=".SelectRole">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>

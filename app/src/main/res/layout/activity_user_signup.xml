@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserSignup"
+    android:background="@color/putih_bg">
+
+    <ImageView
+        android:id="@+id/btnBack13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:src="@drawable/ic_btn_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvUserSignup"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="90dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="User Signup"
+        android:textColor="@color/hitam"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/tvUsername1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="30dp"
+        android:text="Username"
+        android:textSize="14sp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/inter_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUserSignup" />
+
+    <EditText
+        android:id="@+id/etUsername3"
+        android:textSize="12sp"
+        android:textColor="@color/hitam"
+        android:textColorHint="@color/abu_abu"
+        android:fontFamily="@font/inter_regular"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingLeft="20dp"
+        android:hint="Masukkan username"
+        android:background="@drawable/bg_input_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvUsername1"/>
+
+    <TextView
+        android:id="@+id/tvEmail3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="30dp"
+        android:text="Email"
+        android:textSize="14sp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/inter_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etUsername3" />
+
+    <EditText
+        android:id="@+id/etEmail3"
+        android:textSize="12sp"
+        android:textColor="@color/hitam"
+        android:textColorHint="@color/abu_abu"
+        android:inputType="textEmailAddress"
+        android:fontFamily="@font/inter_regular"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingLeft="20dp"
+        android:hint="Masukkan email"
+        android:background="@drawable/bg_input_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvEmail3"/>
+
+    <TextView
+        android:id="@+id/tvpassword3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="30dp"
+        android:text="Password"
+        android:textSize="14sp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/inter_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etEmail3" />
+
+    <EditText
+        android:id="@+id/etPassword3"
+        android:textSize="12sp"
+        android:textColor="@color/hitam"
+        android:textColorHint="@color/abu_abu"
+        android:inputType="textPassword"
+        android:fontFamily="@font/inter_regular"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingLeft="20dp"
+        android:hint="Masukkan password"
+        android:background="@drawable/bg_input_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvpassword3"/>
+
+
+    <TextView
+        android:id="@+id/tvNoHandphone3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="18dp"
+        android:layout_marginStart="30dp"
+        android:text="No. Handphone"
+        android:textSize="14sp"
+        android:textColor="@color/hitam"
+        android:fontFamily="@font/inter_regular"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etPassword3" />
+
+    <EditText
+        android:id="@+id/etNoHandphone3"
+        android:textSize="12sp"
+        android:textColor="@color/hitam"
+        android:textColorHint="@color/abu_abu"
+        android:inputType="number"
+        android:fontFamily="@font/inter_regular"
+        android:layout_width="match_parent"
+        android:layout_height="45dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
+        android:paddingLeft="20dp"
+        android:hint="Masukkan no handphone"
+        android:background="@drawable/bg_input_edit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvNoHandphone3"/>
+
+    <Button
+        android:id="@+id/btnDaftar3"
+        android:text="Daftar"
+        android:textSize="16sp"
+        android:textAllCaps="false"
+        android:textColor="@color/putih_bg"
+        android:fontFamily="@font/poppins_bold"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_biru"
+        android:layout_marginTop="30dp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etNoHandphone3"/>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnDaftar3">
+
+        <TextView
+            android:text="Sudah punya akun ?"
+            android:textSize="12sp"
+            android:textColor="@color/hitam"
+            android:fontFamily="@font/inter_regular"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvMasuk3"
+            android:text="Masuk"
+            android:textSize="12sp"
+            android:textColor="@color/biru"
+            android:fontFamily="@font/inter_regular"
+            android:layout_marginLeft="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

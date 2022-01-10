@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "898602893490",
+    "project_id": "matematika-cfae0",
+    "storage_bucket": "matematika-cfae0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:898602893490:android:afd6953e775b60d90789ab",
+        "android_client_info": {
+          "package_name": "com.responsi.matematika"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "898602893490-ulkp8b6fjddtad234a9celeonjvli92j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.responsi.matematika",
+            "certificate_hash": "ef6ac906f49e6f3a60a75968ac9a8d8257a970e5"
+          }
+        },
+        {
+          "client_id": "898602893490-cotofvchgnocbfc4jcho4bburofimg54.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDmYmam6DYXzntSUc0dSxNLQmfBDSg3VTY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "898602893490-cotofvchgnocbfc4jcho4bburofimg54.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
