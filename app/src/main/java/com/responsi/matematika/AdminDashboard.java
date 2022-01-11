@@ -1,16 +1,24 @@
 package com.responsi.matematika;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -27,17 +35,19 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
 
 public class AdminDashboard extends AppCompatActivity {
 
     TextView tvNamaAdmin;
     ImageView btnSignOut1;
+    Button btnUploadDisini;
+    ListView listDaftarMateri;
+    List<AmbilMateri> materi;
 
     DatabaseReference reference;
-    FirebaseFirestore db;
-    RecyclerView mRecyclerView;
-    ArrayList<DownModel> downModelArrayList = new ArrayList<>();
-    MyAdapter myAdapter;
+
 
     String USERNAME_KEY = "usernamekey";
     String username_key = "";
@@ -49,16 +59,16 @@ public class AdminDashboard extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_admin_dashboard);
 
-        setUpRV();
-        setUpFB();
-        dataFromFirebase();
-
         getUsernameLocal();
         tvNamaAdmin = findViewById(R.id.tvNamaAdmin);
         btnSignOut1 = findViewById(R.id.btnSignout1);
+        btnUploadDisini = findViewById(R.id.btnUploadDisini);
+        listDaftarMateri = findViewById(R.id.listDaftarMateri);
+        
+        materi = new ArrayList<>();
+        lihatMateri();
 
         reference = FirebaseDatabase.getInstance().getReference().child("Admin").child(username_key_new);
-        //db = FirebaseFirestore.getInstance();
 
         reference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
@@ -81,38 +91,62 @@ public class AdminDashboard extends AppCompatActivity {
             }
         });
 
-    }
-    private void dataFromFirebase() {
-        if(downModelArrayList.size()>0)
-            downModelArrayList.clear();
+        //ke upload
+        btnUploadDisini.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent keUpload = new Intent(AdminDashboard.this, UploadMateri.class);
+                startActivity(keUpload);
+            }
+        });
 
-        db.collection("materi")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        for(DocumentSnapshot documentSnapshot: task.getResult()) {
+        //saat daftar materi di klik
+        listDaftarMateri.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                AmbilMateri ambilMateri = materi.get(i);
 
-                            DownModel downModel= new DownModel(documentSnapshot.getString("judul"),documentSnapshot.getString("link"));
-                            downModelArrayList.add(downModel);
-
-                        }
-
-                        myAdapter= new MyAdapter(AdminDashboard.this,downModelArrayList);
-                        mRecyclerView.setAdapter(myAdapter);
-                    }
-                })
-
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast.makeText(AdminDashboard.this, "Terjadi Kesalahan", Toast.LENGTH_SHORT).show();
-                    }
-                })
-        ;
-
+                Intent bacaMateri = new Intent(Intent.ACTION_VIEW);
+                bacaMateri.setType("application/pdf");
+                bacaMateri.setData(Uri.parse(ambilMateri.getUrl()));
+                startActivity(bacaMateri);
+            }
+        });
     }
 
+    private void lihatMateri() {
+        reference = FirebaseDatabase.getInstance().getReference("Materi");
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                for (DataSnapshot ds : snapshot.getChildren()) {
+                    AmbilMateri ambilMateri = ds.getValue(AmbilMateri.class);
+                    materi.add(ambilMateri);
+                }
+                String[] daftarMateri = new String[materi.size()];
+                for (int i = 0; i < daftarMateri.length; i++) {
+                    daftarMateri[i] = materi.get(i).getJudul();
+                }
+
+                ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(getApplicationContext(), android.R.layout.simple_list_item_1, daftarMateri){
+
+                    @NonNull
+                    @Override
+                    public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+                        View view = super.getView(position, convertView, parent);
+                        TextView textView = (TextView) view.findViewById(android.R.id.text1);
+                        return view;
+                    }
+                };
+                listDaftarMateri.setAdapter(arrayAdapter);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+    }
 
     @Override
     public void onBackPressed() {
@@ -123,14 +157,5 @@ public class AdminDashboard extends AppCompatActivity {
     public void getUsernameLocal(){
         SharedPreferences sharedPreferences = getSharedPreferences(USERNAME_KEY, MODE_PRIVATE);
         username_key_new = sharedPreferences.getString(username_key,"");
-    }
-    private void setUpFB(){
-        db=FirebaseFirestore.getInstance();
-    }
-
-    private void setUpRV(){
-        mRecyclerView= findViewById(R.id.rvDaftarMateri);
-        mRecyclerView.setHasFixedSize(true);
-        mRecyclerView.setLayoutManager(new LinearLayoutManager(this));
     }
 }
